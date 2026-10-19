@@ -1,20 +1,16 @@
-# PROG5121 POE Part 2
+# PROG5121 POE Part 2 - QuickChat Application
 
-## Getting Started
+**Student Name:** Denau Hermanus  
+**Student ID:** ST10497747  
+**Module:** PROG5121 (Programming 1A)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Overview
+This repository contains Part 2 of the QuickChat Messaging Application built in Java using VS Code.
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Features Added in Part 2
+* User authentication integration (`Login.java`).
+* Interactive GUI popups (`JOptionPane`).
+* Cell phone number and message length validation (`Message.java`).
+* Automatic Message Hash creation (`Message.java`).
+* Message storage in JSON format (`messages.json`).
+* Full JUnit 5 unit testing (`LoginTest.java` and `MessageTest.java`).
