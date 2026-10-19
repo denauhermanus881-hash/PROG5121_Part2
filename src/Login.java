@@ -1,120 +1,80 @@
-// Login class handling authentication logic.
-
 public class Login {
-
-    private String userVal;
-    private String passVal;
-    private String fName;
-    private String lName;
-    private String cellNum;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String cellPhoneNumber;
 
     public Login() {
+        this.username = "";
+        this.password = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.cellPhoneNumber = "";
     }
 
-    public Login(String userVal, String passVal, String fName, String lName, String cellNum) {
-        this.userVal = userVal;
-        this.passVal = passVal;
-        this.fName = fName;
-        this.lName = lName;
-        this.cellNum = cellNum;
-    }
-
-    public String getUsername() {
-        return userVal;
-    }
-
-    public void setUsername(String userVal) {
-        this.userVal = userVal;
-    }
-
-    public String getPassword() {
-        return passVal;
-    }
-
-    public void setPassword(String passVal) {
-        this.passVal = passVal;
-    }
-
-    public String getFirstName() {
-        return fName;
-    }
-
-    public void setFirstName(String fName) {
-        this.fName = fName;
-    }
-
-    public String getLastName() {
-        return lName;
-    }
-
-    public void setLastName(String lName) {
-        this.lName = lName;
-    }
-
-    public String getCellPhoneNumber() {
-        return cellNum;
-    }
-
-    public void setCellPhoneNumber(String cellNum) {
-        this.cellNum = cellNum;
+    public Login(String username, String password, String firstName, String lastName, String cellPhoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cellPhoneNumber = cellPhoneNumber;
     }
 
     public boolean checkUserName() {
-        if (userVal == null) return false;
-        return userVal.contains("_") && userVal.length() <= 5;
+        return username != null && username.contains("_") && username.length() <= 5;
     }
 
     public boolean checkPasswordComplexity() {
-        if (passVal == null || passVal.length() < 8) {
+        if (password == null || password.length() < 8) {
             return false;
         }
+        boolean hasCapital = false;
+        boolean hasNumber = false;
+        boolean hasSpecial = false;
 
-        boolean upperFound = false;
-        boolean numFound = false;
-        boolean specFound = false;
-
-        for (int i = 0; i < passVal.length(); i++) {
-            char c = passVal.charAt(i);
-            if (Character.isUpperCase(c)) {
-                upperFound = true;
-            } else if (Character.isDigit(c)) {
-                numFound = true;
-            } else if (!Character.isLetterOrDigit(c)) {
-                specFound = true;
-            }
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            if (Character.isUpperCase(c)) hasCapital = true;
+            else if (Character.isDigit(c)) hasNumber = true;
+            else if (!Character.isLetterOrDigit(c)) hasSpecial = true;
         }
-
-        return upperFound && numFound && specFound;
+        return hasCapital && hasNumber && hasSpecial;
     }
 
     public boolean checkCellPhoneNumber() {
-        if (cellNum == null) return false;
-        return cellNum.matches("^\\+27\\d{8,10}$");
+        return cellPhoneNumber != null && cellPhoneNumber.startsWith("+") && cellPhoneNumber.length() <= 12;
     }
 
     public String registerUser() {
         if (!checkUserName()) {
-            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
+            return "Username is incorrectly formatted";
         }
         if (!checkPasswordComplexity()) {
-            return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+            return "Password is not correctly formatted";
         }
         if (!checkCellPhoneNumber()) {
-            return "Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
+            return "Cell phone number is incorrectly formatted";
         }
-        return "The two above conditions have been met, and the user has been registered successfully.";
+        return "User successfully registered";
     }
 
-    public boolean loginUser(String inputUser, String inputPass) {
-        if (inputUser == null || inputPass == null) return false;
-        return inputUser.equals(this.userVal) && inputPass.equals(this.passVal);
+    public boolean loginUser(String enteredUsername, String enteredPassword) {
+        return this.username.equals(enteredUsername) && this.password.equals(enteredPassword);
     }
 
-    public String returnLoginStatus(boolean success) {
-        if (success) {
-            return "Welcome " + fName + ", " + lName + " it is great to see you again.";
+    public String returnLoginStatus(boolean isLoggedIn) {
+        if (isLoggedIn) {
+            return "Welcome " + firstName + " " + lastName + ", it is great to see you again.";
         } else {
-            return "Username or password incorrect, please try again.";
+            return "Username or password incorrect, please try again";
         }
     }
+
+    // Getters and Setters
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
+    public void setCellPhoneNumber(String cellPhoneNumber) { this.cellPhoneNumber = cellPhoneNumber; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
 }
