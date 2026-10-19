@@ -142,3 +142,11 @@
   "messageHash": "64:0:HIDOING?",
   "status": "Pending"
 }
+{
+  "messageID": "9680312863",
+  "messageNumber": 0,
+  "recipientCell": "+27769856209",
+  "messageContent": "hi javier how are you doing?",
+  "messageHash": "96:0:HIDOING?",
+  "status": "Pending"
+}
